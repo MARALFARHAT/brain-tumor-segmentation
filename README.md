@@ -80,19 +80,6 @@ Input (1×256×256)
             │
         Output (2×256×256) → argmax → Binary Mask
 ````
-
-**Key design choices:**
-
-- Skip connections preserve spatial detail lost during downsampling
-- Batch Normalisation for stable training
-- Combined Dice + Cross-Entropy loss handles class imbalance
-- Cosine Annealing LR scheduler
-````
-````
-
-Use GitHub's **Preview** tab before committing — you'll see instantly if it's right.
-
-Also check the Quick Start `bash` blocks — same problem may have hit them. Scroll and look.
 ## Evaluation Metrics
 | Metric | Description |
 |--------|-------------|
