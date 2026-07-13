@@ -23,14 +23,17 @@ Predicted masks compared against ground truth on held-out slices. Tumor-free sli
 ![Predictions](outputs/predictions.png)
 
 ## Project Structure
+
+````
 brain_tumor_segmentation/
 ├── model.py        # U-Net architecture + losses (Dice, Combined)
 ├── dataset.py      # Dataset classes (Synthetic, Kaggle LGG, BraTS-ready)
 ├── metrics.py      # Dice, IoU, Sensitivity, Specificity, Hausdorff
 ├── train.py        # Full training loop with checkpointing & plots
-├── inference.py    # Single-image inference + Grad-CAM visualization
+├── inference.py    # Single-image inference + Grad-CAM visualisation
 ├── requirements.txt
 └── README.md
+````
 ---
 ## Quick Start
 ### 1. Install dependencies
@@ -65,21 +68,31 @@ Trained weights are not included in this repository.
 | BraTS 2021 | ~1,251 patients | Free (registration) | T1, T2, FLAIR, T1ce |
 ---
 ## Architecture
+
+````
 Input (1×256×256)
-│
-├── Encoder: 4× [DoubleConv → MaxPool]   (64→128→256→512)
-│
-├── Bottleneck: DoubleConv (1024)
-│
-└── Decoder: 4× [Upsample → Skip Concat → DoubleConv]
-│
-Output (2×256×256) → argmax → Binary Mask
+    │
+    ├── Encoder: 4× [DoubleConv → MaxPool]   (64→128→256→512)
+    │
+    ├── Bottleneck: DoubleConv (1024)
+    │
+    └── Decoder: 4× [Upsample → Skip Concat → DoubleConv]
+            │
+        Output (2×256×256) → argmax → Binary Mask
+````
+
 **Key design choices:**
+
 - Skip connections preserve spatial detail lost during downsampling
-- Batch Normalization for stable training
+- Batch Normalisation for stable training
 - Combined Dice + Cross-Entropy loss handles class imbalance
 - Cosine Annealing LR scheduler
----
+````
+````
+
+Use GitHub's **Preview** tab before committing — you'll see instantly if it's right.
+
+Also check the Quick Start `bash` blocks — same problem may have hit them. Scroll and look.
 ## Evaluation Metrics
 | Metric | Description |
 |--------|-------------|
